@@ -1,0 +1,13 @@
+{
+  "name": "sm-predictions-odds-updater",
+  "version": "1.0.0",
+  "description": "Auto-update odds for SM.PREDICTIONS",
+  "main": "scripts/update-odds.js",
+  "scripts": {
+    "update-odds": "node scripts/update-odds.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

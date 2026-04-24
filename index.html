@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SM.PREDICTIONS | Elite Betting Tips Uganda</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgba(2, 20, 45, 1) 0%, rgba(0, 8, 20, 1) 100%);
+            color: #f0f4fc;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* glassmorphism + blur edges */
+        .glass-card {
+            background: rgba(15, 35, 60, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(0, 150, 255, 0.25);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(0, 180, 255, 0.2);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 40px -16px rgba(0, 160, 255, 0.3);
+            border-color: rgba(0, 160, 255, 0.6);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* header gradient + shine */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #3b9eff, #0a5fcf);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            animation: fadeSlideDown 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-top: 0.5rem;
+            animation: fadeSlideUp 0.7s ease;
+        }
+
+        .whatsapp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #075e54;
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-top: 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-badge i {
+            font-size: 1.2rem;
+        }
+
+        .whatsapp-badge:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        /* rooms grid */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0 2rem;
+        }
+
+        .room-card {
+            background: rgba(8, 28, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 36px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            animation: fadeInScale 0.5s ease backwards;
+        }
+
+        .room-card i {
+            font-size: 2.6rem;
+            color: #3b9eff;
+            margin-bottom: 1rem;
+        }
+
+        .room-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .room-card p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, #f5b042, #e68a2e);
+            width: fit-content;
+            margin: 12px auto 0;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* latest tips preview */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            border-left: 5px solid #2b7fff;
+            padding-left: 1rem;
+        }
+
+        .tips-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tip-item {
+            background: rgba(0, 20, 45, 0.7);
+            border-radius: 28px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+            border-left: 5px solid #1e88e5;
+        }
+
+        .match-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .prediction {
+            background: #0f2a44;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .odds {
+            font-family: monospace;
+            font-weight: 800;
+            background: #00000055;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .result {
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .won { color: #2ecc71; }
+        .lost { color: #e74c3c; }
+        .pending { color: #f39c12; }
+
+        /* floating whatsapp */
+        .float-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            line-height: 60px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
+            z-index: 100;
+            animation: pulseRing 1.5s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            80% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(59,158,255,0.2);
+            padding-top: 2rem;
+        }
+
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #3b9eff;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: #3b9eff33;
+            transform: scale(1.02);
+        }
+        .room-header {
+            background: rgba(0, 30, 60, 0.6);
+            border-radius: 40px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(8px);
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .tip-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <!-- Hero -->
+        <div class="hero">
+            <h1><i class="fas fa-chart-line"></i> SM.PREDICTIONS</h1>
+            <p>Elite betting tips • Data-driven accuracy • Uganda's #1 tipster</p>
+            <a href="https://wa.me/25676722557?text=Hello%20SM.PREDICTIONS%2C%20I%20want%20VIP%20access" class="whatsapp-badge" target="_blank">
+                <i class="fab fa-whatsapp"></i> +256 767 225 57 — Chat for VIP
+            </a>
+        </div>
+
+        <!-- 4 Rooms -->
+        <div class="rooms-grid">
+            <a href="free-room.html" class="room-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>🎫 Free Ticket</h3>
+                <p>Daily free premium pick</p>
+            </a>
+            <a href="ordinary-room.html" class="room-card">
+                <i class="fas fa-book-open"></i>
+                <h3>📘 Ordinary Room</h3>
+                <p>3-5 tips • value odds</p>
+            </a>
+            <a href="vip-room.html" class="room-card">
+                <i class="fas fa-crown"></i>
+                <h3>👑 VIP Room</h3>
+                <p>Elite tips • high strike rate</p>
+                <div class="vip-badge">🔒 restricted access</div>
+            </a>
+            <a href="results-room.html" class="room-card">
+                <i class="fas fa-chart-simple"></i>
+                <h3>📊 Results Room</h3>
+                <p>Track all past predictions</p>
+            </a>
+        </div>
+
+        <!-- Latest tips preview (dynamic from JSON) -->
+        <div class="section-title"><i class="fas fa-clock"></i> ⚡ Latest Tips Preview</div>
+        <div class="tips-preview" id="previewTips">
+            <div class="tip-item">Loading latest predictions...</div>
+        </div>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="results-room.html" class="btn-outline"><i class="fas fa-chart-line"></i> View full results history</a>
+        </div>
+
+        <footer>
+            <p>© 2025 SM.PREDICTIONS — 18+ only. Betting involves risk. Past results don't guarantee future wins.</p>
+            <p><i class="fab fa-whatsapp"></i> Support: 25676722557 | <i class="fas fa-envelope"></i> smpredictions@proton.me</p>
+        </footer>
+    </div>
+
+    <!-- floating whatsapp -->
+    <a href="https://wa.me/25676722557?text=VIP%20Room%20Request%20%F0%9F%94%92" class="float-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Global fetch tips, show latest 3 on homepage
+        async function loadTipsPreview() {
+            try {
+                const res = await fetch('tips.json?v=' + Date.now());
+                if (!res.ok) throw new Error('tips.json not found');
+                const tips = await res.json();
+                const container = document.getElementById('previewTips');
+                if (!container) return;
+                const latest = tips.slice(-4).reverse(); // show most recent first
+                if (latest.length === 0) {
+                    container.innerHTML = '<div class="tip-item">No tips yet — check back soon!</div>';
+                    return;
+                }
+                container.innerHTML = latest.map(tip => `
+                    <div class="tip-item">
+                        <div class="match-name"><i class="fas fa-futbol"></i> ${tip.match}</div>
+                        <div class="prediction">🎯 ${tip.prediction}</div>
+                        <div class="odds">Odds ${tip.odds}</div>
+                        <div class="result ${tip.result}">${tip.result.toUpperCase()}</div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('previewTips').innerHTML = '<div class="tip-item">⚠️ Tips data loading: make sure tips.json exists. Using demo soon.</div>';
+                console.warn(err);
+            }
+        }
+        loadTipsPreview();
+    </script>
+</body>
+</html>

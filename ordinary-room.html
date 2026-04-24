@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SM.PREDICTIONS | Ordinary Room - Value Tips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #02142d, #000811);
+            color: #eef5ff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header Section */
+        .ordinary-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeSlideDown 0.6s ease;
+        }
+
+        .ordinary-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #5dade2, #2e86c1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .ordinary-header p {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .room-banner {
+            display: inline-block;
+            background: rgba(46, 134, 193, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(93, 173, 226, 0.5);
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(10, 35, 55, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(93, 173, 226, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: #5dade2;
+            box-shadow: 0 12px 25px -10px rgba(93, 173, 226, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 1.8rem;
+            color: #5dade2;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #85c1e9);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        /* Tabs Navigation */
+        .tabs-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            background: rgba(0, 20, 45, 0.5);
+            padding: 0.5rem;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            color: #eef5ff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #2e86c1, #1b4f72);
+            box-shadow: 0 2px 8px rgba(46, 134, 193, 0.4);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(93, 173, 226, 0.3);
+        }
+
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tip-card {
+            background: rgba(8, 28, 48, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 1.3rem;
+            border: 1px solid rgba(93, 173, 226, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeInUp 0.4s ease backwards;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-6px);
+            border-color: #5dade2;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+        }
+
+        .tip-date {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+        }
+
+        .tip-league {
+            color: #85c1e9;
+            font-weight: 600;
+        }
+
+        .tip-match {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            line-height: 1.3;
+        }
+
+        .tip-prediction {
+            background: rgba(46, 134, 193, 0.25);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin: 0.7rem 0;
+            border-left: 3px solid #5dade2;
+        }
+
+        .tip-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed rgba(93, 173, 226, 0.3);
+        }
+
+        .tip-odds {
+            font-family: monospace;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #85c1e9;
+        }
+
+        .tip-result {
+            font-weight: 800;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+        }
+
+        .result-won {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .result-lost {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        .result-pending {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+        }
+
+        .confidence-high {
+            color: #2ecc71;
+        }
+
+        .confidence-medium {
+            color: #f39c12;
+        }
+
+        .confidence-low {
+            color: #e74c3c;
+        }
+
+        .analysis-text {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.8rem;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            font-style: italic;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 20, 45, 0.5);
+            border-radius: 32px;
+            color: #85c1e9;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(0, 30, 60, 0.7);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .page-btn.active {
+            background: #2e86c1;
+        }
+
+        .page-btn:hover:not(.active) {
+            background: #5dade2;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 20, 45, 0.5);
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #5dade2;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Back Link */
+        .back-link {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #85c1e9;
+            text-decoration: none;
+            border-bottom: 1px dashed #5dade2;
+            transition: 0.2s;
+        }
+
+        .back-link a:hover {
+            color: #5dade2;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.6;
+            padding: 1rem;
+        }
+
+        /* Floating WhatsApp */
+        .float-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            line-height: 60px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
+            z-index: 100;
+            animation: pulseRing 1.5s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            80% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .ordinary-header h1 {
+                font-size: 1.8rem;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+                border-radius: 24px;
+            }
+            .stat-value {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="ordinary-header">
+        <h1><i class="fas fa-book-open"></i> ORDINARY ROOM</h1>
+        <p>Value tips • Solid analysis • 3-5 daily picks</p>
+        <div class="room-banner">
+            <i class="fas fa-chart-line"></i> Free registration • No payment required
+        </div>
+    </div>
+
+    <!-- Statistics Dashboard -->
+    <div class="stats-dashboard" id="statsDashboard">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-simple"></i></div>
+            <div class="stat-value" id="totalTips">--</div>
+            <div class="stat-label">Total Tips</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+            <div class="stat-value" id="wonTips">--</div>
+            <div class="stat-label">Won</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+            <div class="stat-value" id="lostTips">--</div>
+            <div class="stat-label">Lost</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+            <div class="stat-value" id="pendingTips">--</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-percent"></i></div>
+            <div class="stat-value" id="winRate">--</div>
+            <div class="stat-label">Win Rate</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-value" id="avgOdds">--</div>
+            <div class="stat-label">Avg Odds</div>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-group">
+            <select id="resultFilter" class="filter-select">
+                <option value="all">📊 All Results</option>
+                <option value="won">✅ Won</option>
+                <option value="lost">❌ Lost</option>
+                <option value="pending">⏳ Pending</option>
+            </select>
+            <select id="confidenceFilter" class="filter-select">
+                <option value="all">⭐ All Confidence</option>
+                <option value="High">🔥 High</option>
+                <option value="Medium">📘 Medium</option>
+                <option value="Low">⚠️ Low</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <input type="text" id="searchInput" placeholder="🔍 Search matches..." style="background: rgba(0,0,0,0.4); border: 1px solid #5dade2; padding: 0.4rem 1rem; border-radius: 30px; color: white;">
+        </div>
+    </div>
+
+    <!-- Tabs: Active vs Archived -->
+    <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="active">🔥 Active / Pending</button>
+        <button class="tab-btn" data-tab="archived">📜 Archived (Won/Lost)</button>
+        <button class="tab-btn" data-tab="all">📋 All Tips</button>
+    </div>
+
+    <!-- Tips Grid -->
+    <div class="tips-grid" id="tipsGrid">
+        <div class="empty-state"><i class="fas fa-spinner fa-pulse"></i> Loading ordinary tips...</div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to SM.PREDICTIONS Home</a>
+    </div>
+
+    <footer>
+        <p>© 2025 SM.PREDICTIONS — Ordinary Room tips are free for registered users. Bet responsibly. 18+</p>
+        <p><i class="fab fa-whatsapp"></i> Support: 25676722557 | Upgrade to VIP for exclusive high-odds picks</p>
+    </footer>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/25676722557?text=I%20want%20VIP%20upgrade%20from%20Ordinary%20Room" class="float-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    let allTips = [];
+    let currentTab = 'active';
+    let currentResultFilter = 'all';
+    let currentConfidenceFilter = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    const itemsPerPage = 9;
+
+    // Fetch and load data
+    async function loadOrdinaryTips() {
+        try {
+            const response = await fetch('tips.json?v=' + Date.now());
+            if (!response.ok) throw new Error('tips.json not found');
+            const data = await response.json();
+            // Filter only ordinary room tips
+            allTips = (data.tips || []).filter(tip => tip.room === 'ordinary');
+            updateStatistics();
+            renderTips();
+        } catch (error) {
+            console.error(error);
+            document.getElementById('tipsGrid').innerHTML = '<div class="empty-state"><i class="fas fa-database"></i> Could not load tips.json. Please ensure the file exists with "room": "ordinary" entries.</div>';
+        }
+    }
+
+    // Update Statistics Dashboard
+    function updateStatistics() {
+        const total = allTips.length;
+        const won = allTips.filter(t => t.result === 'won').length;
+        const lost = allTips.filter(t => t.result === 'lost').length;
+        const pending = allTips.filter(t => t.result === 'pending').length;
+        const winRate = (won + lost) > 0 ? ((won / (won + lost)) * 100).toFixed(1) : '0';
+        
+        let sumOdds = 0;
+        allTips.forEach(t => {
+            let odds = parseFloat(t.odds);
+            if (!isNaN(odds)) sumOdds += odds;
+        });
+        const avgOdds = allTips.length > 0 ? (sumOdds / allTips.length).toFixed(2) : '0';
+
+        document.getElementById('totalTips').innerText = total;
+        document.getElementById('wonTips').innerText = won;
+        document.getElementById('lostTips').innerText = lost;
+        document.getElementById('pendingTips').innerText = pending;
+        document.getElementById('winRate').innerText = `${winRate}%`;
+        document.getElementById('avgOdds').innerText = avgOdds;
+    }
+
+    // Get filtered tips based on all criteria
+    function getFilteredTips() {
+        let filtered = [...allTips];
+        
+        // Tab filter
+        if (currentTab === 'active') {
+            filtered = filtered.filter(tip => tip.result === 'pending');
+        } else if (currentTab === 'archived') {
+            filtered = filtered.filter(tip => tip.result === 'won' || tip.result === 'lost');
+        }
+        
+        // Result filter
+        if (currentResultFilter !== 'all') {
+            filtered = filtered.filter(tip => tip.result === currentResultFilter);
+        }
+        
+        // Confidence filter
+        if (currentConfidenceFilter !== 'all') {
+            filtered = filtered.filter(tip => tip.confidence === currentConfidenceFilter);
+        }
+        
+        // Search filter
+        if (currentSearch.trim() !== '') {
+            const searchTerm = currentSearch.toLowerCase();
+            filtered = filtered.filter(tip => 
+                tip.match.toLowerCase().includes(searchTerm) || 
+                (tip.league && tip.league.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        // Sort by date (newest first)
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        return filtered;
+    }
+
+    // Render tips grid with pagination
+    function renderTips() {
+        const filtered = getFilteredTips();
+        const totalPages = Math.ceil(filtered.length / itemsPerPage);
+        
+        if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+        
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginatedTips = filtered.slice(start, start + itemsPerPage);
+        
+        const grid = document.getElementById('tipsGrid');
+        
+        if (paginatedTips.length === 0) {
+            grid.innerHTML = `<div class="empty-state"><i class="fas fa-info-circle"></i> No ordinary tips match your filters.<br>Check back soon for new predictions!</div>`;
+            document.getElementById('pagination').innerHTML = '';
+            return;
+        }
+        
+        grid.innerHTML = paginatedTips.map((tip, idx) => {
+            const resultClass = tip.result === 'won' ? 'result-won' : (tip.result === 'lost' ? 'result-lost' : 'result-pending');
+            const resultIcon = tip.result === 'won' ? '🏆' : (tip.result === 'lost' ? '❌' : '⏳');
+            const confidenceClass = tip.confidence === 'High' ? 'confidence-high' : (tip.confidence === 'Medium' ? 'confidence-medium' : 'confidence-low');
+            const confidenceIcon = tip.confidence === 'High' ? '🔥' : (tip.confidence === 'Medium' ? '📘' : '⚠️');
+            
+            return `
+                <div class="tip-card" style="animation-delay: ${idx * 0.05}s">
+                    <div class="tip-header">
+                        <span class="tip-date"><i class="far fa-calendar-alt"></i> ${formatDate(tip.date)}</span>
+                        <span class="tip-league"><i class="fas fa-flag-checkered"></i> ${escapeHtml(tip.league || 'Various')}</span>
+                    </div>
+                    <div class="tip-match">
+                        ⚽ ${escapeHtml(tip.match)}
+                    </div>
+                    <div class="tip-prediction">
+                        <i class="fas fa-chart-simple"></i> ${escapeHtml(tip.prediction)}
+                    </div>
+                    <div class="tip-footer">
+                        <div>
+                            <span class="tip-odds"><i class="fas fa-percent"></i> ${tip.odds}</span>
+                        </div>
+                        <div class="tip-result ${resultClass}">
+                            ${resultIcon} ${tip.result.toUpperCase()}
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                        <span class="${confidenceClass}"><i class="fas fa-chart-line"></i> ${confidenceIcon} ${tip.confidence || 'Medium'} Confidence</span>
+                        ${tip.score ? `<span><i class="fas fa-futbol"></i> ${tip.score}</span>` : ''}
+                    </div>
+                    ${tip.analysis ? `<div class="analysis-text"><i class="fas fa-lightbulb"></i> ${escapeHtml(tip.analysis)}</div>` : ''}
+                </div>
+            `;
+        }).join('');
+        
+        renderPagination(totalPages);
+    }
+    
+    function renderPagination(totalPages) {
+        const paginationDiv = document.getElementById('pagination');
+        if (totalPages <= 1) {
+            paginationDiv.innerHTML = '';
+            return;
+        }
+        
+        let pages = [];
+        pages.push(`<button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>« Prev</button>`);
+        
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                pages.push(`<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`);
+            } else if (i === currentPage - 3 || i === currentPage + 3) {
+                pages.push(`<span style="padding: 0.5rem; opacity: 0.5;">...</span>`);
+            }
+        }
+        
+        pages.push(`<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next »</button>`);
+        
+        paginationDiv.innerHTML = pages.join('');
+        
+        document.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const page = parseInt(btn.dataset.page);
+                if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    renderTips();
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+    
+    function formatDate(dateStr) {
+        if (!dateStr) return 'TBD';
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return dateStr;
+        return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' });
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    // Event Listeners
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTab = btn.dataset.tab;
+            currentPage = 1;
+            renderTips();
+        });
+    });
+    
+    document.getElementById('resultFilter').addEventListener('change', (e) => {
+        currentResultFilter = e.target.value;
+        currentPage = 1;
+        renderTips();
+    });
+    
+    document.getElementById('confidenceFilter').addEventListener('change', (e) => {
+        currentConfidenceFilter = e.target.value;
+        currentPage = 1;
+        renderTips();
+    });
+    
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        currentPage = 1;
+        renderTips();
+    });
+    
+    // Initialize
+    loadOrdinaryTips();
+</script>
+</body>
+</html>

@@ -1,0 +1,665 @@
+Here is the complete, professional **Results Room** HTML code with detailed statistics, filtering, win/loss tracking, and premium animations matching your blue theme.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SM.PREDICTIONS | Results Room - Track Record</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #02142d, #000811);
+            color: #eef5ff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header Section */
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeSlideDown 0.6s ease;
+        }
+
+        .results-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #3b9eff, #0a5fcf);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .results-header p {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(10, 35, 55, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 1.3rem;
+            text-align: center;
+            border: 1px solid rgba(59, 158, 255, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b9eff;
+            box-shadow: 0 12px 25px -10px rgba(59, 158, 255, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: #3b9eff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #7cb9ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: rgba(0, 20, 45, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: #eef5ff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #1e6ec5, #0a4a8a);
+            box-shadow: 0 2px 8px rgba(30, 110, 197, 0.4);
+        }
+
+        .filter-btn:hover {
+            background: #1e6ec5;
+            transform: scale(1.02);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.4rem;
+            outline: none;
+            width: 180px;
+        }
+
+        .search-box i {
+            opacity: 0.6;
+        }
+
+        /* Tips Table */
+        .tips-table-container {
+            background: rgba(5, 20, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            overflow-x: auto;
+            border: 1px solid rgba(59, 158, 255, 0.2);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tips-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .tips-table th {
+            text-align: left;
+            padding: 1rem 1rem;
+            background: rgba(0, 40, 70, 0.6);
+            font-weight: 700;
+            color: #7cb9ff;
+            border-bottom: 1px solid rgba(59, 158, 255, 0.3);
+        }
+
+        .tips-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(59, 158, 255, 0.15);
+            vertical-align: middle;
+        }
+
+        .tips-table tr:hover {
+            background: rgba(59, 158, 255, 0.08);
+            transition: 0.2s;
+        }
+
+        .room-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .room-vip {
+            background: linear-gradient(135deg, #f5b042, #e68a2e);
+            color: #1a0f00;
+        }
+
+        .room-ordinary {
+            background: #2c5f8a;
+            color: white;
+        }
+
+        .room-free {
+            background: #2c6e4f;
+            color: white;
+        }
+
+        .result-won {
+            color: #2ecc71;
+            font-weight: 800;
+        }
+
+        .result-lost {
+            color: #e74c3c;
+            font-weight: 800;
+        }
+
+        .result-pending {
+            color: #f39c12;
+            font-weight: 800;
+        }
+
+        .confidence-high {
+            color: #2ecc71;
+        }
+
+        .confidence-medium {
+            color: #f39c12;
+        }
+
+        .confidence-low {
+            color: #e74c3c;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #7cb9ff;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(0, 30, 60, 0.7);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .page-btn.active {
+            background: #1e6ec5;
+        }
+
+        .page-btn:hover {
+            background: #3b9eff;
+        }
+
+        /* Footer */
+        .back-link {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #7cb9ff;
+            text-decoration: none;
+            border-bottom: 1px dashed #3b9eff;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.6;
+            padding: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating WhatsApp */
+        .float-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            line-height: 60px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
+            z-index: 100;
+            animation: pulseRing 1.5s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            80% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .tips-table th, .tips-table td {
+                padding: 0.7rem;
+                font-size: 0.75rem;
+            }
+            .filter-bar {
+                flex-direction: column;
+                border-radius: 28px;
+            }
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="results-header">
+        <h1><i class="fas fa-chart-line"></i> RESULTS ROOM</h1>
+        <p>Transparent tracking • Verified outcomes • Real performance data</p>
+    </div>
+
+    <!-- Statistics Dashboard -->
+    <div class="stats-dashboard" id="statsDashboard">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+            <div class="stat-value" id="totalTips">--</div>
+            <div class="stat-label">Total Tips</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-value" id="wonTips">--</div>
+            <div class="stat-label">Won</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+            <div class="stat-value" id="lostTips">--</div>
+            <div class="stat-label">Lost</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+            <div class="stat-value" id="pendingTips">--</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-simple"></i></div>
+            <div class="stat-value" id="winRate">--</div>
+            <div class="stat-label">Win Rate</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-crown"></i></div>
+            <div class="stat-value" id="vipWinRate">--</div>
+            <div class="stat-label">VIP Win Rate</div>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">All Rooms</button>
+            <button class="filter-btn" data-filter="vip">👑 VIP Room</button>
+            <button class="filter-btn" data-filter="ordinary">📘 Ordinary Room</button>
+            <button class="filter-btn" data-filter="free">🎫 Free Room</button>
+        </div>
+        <div class="filter-group">
+            <button class="filter-btn" data-result="all">All Results</button>
+            <button class="filter-btn" data-result="won">✅ Won</button>
+            <button class="filter-btn" data-result="lost">❌ Lost</button>
+            <button class="filter-btn" data-result="pending">⏳ Pending</button>
+        </div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search matches...">
+        </div>
+    </div>
+
+    <!-- Tips Table -->
+    <div class="tips-table-container">
+        <table class="tips-table" id="tipsTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Match</th>
+                    <th>League</th>
+                    <th>Prediction</th>
+                    <th>Odds</th>
+                    <th>Room</th>
+                    <th>Result</th>
+                    <th>Confidence</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td colspan="9" class="empty-state"><i class="fas fa-spinner fa-pulse"></i> Loading results...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to SM.PREDICTIONS Home</a>
+    </div>
+
+    <footer>
+        <p>© 2025 SM.PREDICTIONS — Verified results. Past performance doesn't guarantee future returns. Bet responsibly.</p>
+        <p><i class="fab fa-whatsapp"></i> Support: 25676722557</p>
+    </footer>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/25676722557?text=Results%20Room%20-%20I%20want%20VIP%20access" class="float-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    let allTips = [];
+    let currentFilterRoom = 'all';
+    let currentFilterResult = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    const itemsPerPage = 15;
+
+    // Fetch and load data
+    async function loadResults() {
+        try {
+            const response = await fetch('tips.json?v=' + Date.now());
+            if (!response.ok) throw new Error('tips.json not found');
+            const data = await response.json();
+            allTips = data.tips || [];
+            updateStatistics();
+            renderTable();
+        } catch (error) {
+            console.error(error);
+            document.getElementById('tableBody').innerHTML = '<tr><td colspan="9" class="empty-state"><i class="fas fa-database"></i> Could not load tips.json. Please ensure the file exists with proper structure.</td></tr>';
+        }
+    }
+
+    // Update Statistics Dashboard
+    function updateStatistics() {
+        const total = allTips.length;
+        const won = allTips.filter(t => t.result === 'won').length;
+        const lost = allTips.filter(t => t.result === 'lost').length;
+        const pending = allTips.filter(t => t.result === 'pending').length;
+        const winRate = (won + lost) > 0 ? ((won / (won + lost)) * 100).toFixed(1) : '0';
+        
+        const vipTips = allTips.filter(t => t.room === 'vip' && (t.result === 'won' || t.result === 'lost'));
+        const vipWon = allTips.filter(t => t.room === 'vip' && t.result === 'won').length;
+        const vipWinRate = vipTips.length > 0 ? ((vipWon / vipTips.length) * 100).toFixed(1) : '0';
+
+        document.getElementById('totalTips').innerText = total;
+        document.getElementById('wonTips').innerText = won;
+        document.getElementById('lostTips').innerText = lost;
+        document.getElementById('pendingTips').innerText = pending;
+        document.getElementById('winRate').innerText = `${winRate}%`;
+        document.getElementById('vipWinRate').innerText = `${vipWinRate}%`;
+    }
+
+    // Filter tips based on room, result, and search
+    function getFilteredTips() {
+        let filtered = [...allTips];
+        
+        // Room filter
+        if (currentFilterRoom !== 'all') {
+            filtered = filtered.filter(tip => tip.room === currentFilterRoom);
+        }
+        
+        // Result filter
+        if (currentFilterResult !== 'all') {
+            filtered = filtered.filter(tip => tip.result === currentFilterResult);
+        }
+        
+        // Search filter
+        if (currentSearch.trim() !== '') {
+            const searchTerm = currentSearch.toLowerCase();
+            filtered = filtered.filter(tip => 
+                tip.match.toLowerCase().includes(searchTerm) || 
+                (tip.league && tip.league.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        // Sort by date (newest first)
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        return filtered;
+    }
+
+    // Render table with pagination
+    function renderTable() {
+        const filtered = getFilteredTips();
+        const totalPages = Math.ceil(filtered.length / itemsPerPage);
+        
+        // Ensure current page is valid
+        if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+        
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginatedTips = filtered.slice(start, start + itemsPerPage);
+        
+        const tbody = document.getElementById('tableBody');
+        
+        if (paginatedTips.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="9" class="empty-state"><i class="fas fa-search"></i> No tips match your filters</td></tr>';
+            document.getElementById('pagination').innerHTML = '';
+            return;
+        }
+        
+        tbody.innerHTML = paginatedTips.map(tip => {
+            const roomClass = tip.room === 'vip' ? 'room-vip' : (tip.room === 'ordinary' ? 'room-ordinary' : 'room-free');
+            const roomIcon = tip.room === 'vip' ? '👑' : (tip.room === 'ordinary' ? '📘' : '🎫');
+            const resultClass = tip.result === 'won' ? 'result-won' : (tip.result === 'lost' ? 'result-lost' : 'result-pending');
+            const resultIcon = tip.result === 'won' ? '🏆' : (tip.result === 'lost' ? '❌' : '⏳');
+            const confidenceClass = tip.confidence === 'High' ? 'confidence-high' : (tip.confidence === 'Medium' ? 'confidence-medium' : 'confidence-low');
+            
+            return `
+                <tr>
+                    <td>${formatDate(tip.date)}</td>
+                    <td><strong>${escapeHtml(tip.match)}</strong></td>
+                    <td>${escapeHtml(tip.league || '-')}</td>
+                    <td>${escapeHtml(tip.prediction)}</td>
+                    <td>${tip.odds}</td>
+                    <td><span class="room-badge ${roomClass}">${roomIcon} ${tip.room.toUpperCase()}</span></td>
+                    <td class="${resultClass}">${resultIcon} ${tip.result.toUpperCase()}</td>
+                    <td class="${confidenceClass}">${tip.confidence || 'Medium'}</td>
+                    <td>${tip.score || '-'}</td>
+                </tr>
+            `;
+        }).join('');
+        
+        // Render pagination
+        renderPagination(totalPages);
+    }
+    
+    function renderPagination(totalPages) {
+        const paginationDiv = document.getElementById('pagination');
+        if (totalPages <= 1) {
+            paginationDiv.innerHTML = '';
+            return;
+        }
+        
+        let pages = [];
+        pages.push(`<button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>« Prev</button>`);
+        
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                pages.push(`<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`);
+            } else if (i === currentPage - 3 || i === currentPage + 3) {
+                pages.push(`<span style="padding: 0.5rem">...</span>`);
+            }
+        }
+        
+        pages.push(`<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next »</button>`);
+        
+        paginationDiv.innerHTML = pages.join('');
+        
+        // Add event listeners to page buttons
+        document.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const page = parseInt(btn.dataset.page);
+                if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    renderTable();
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+    
+    function formatDate(dateStr) {
+        if (!dateStr) return '-';
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return dateStr;
+        return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    // Event Listeners for Filters
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilterRoom = btn.dataset.filter;
+            currentPage = 1;
+            renderTable();
+        });
+    });
+    
+    document.querySelectorAll('[data-result]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-result]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilterResult = btn.dataset.result;
+            currentPage = 1;
+            renderTable();
+        });
+    });
+    
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        currentPage = 1;
+        renderTable();
+    });
+    
+    // Initialize
+    loadResults();
+</script>
+</body>
+</html>
+```

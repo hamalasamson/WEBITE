@@ -1,0 +1,419 @@
+Here is the complete, standalone VIP Room HTML code with an elite, dark-blue premium aesthetic, exclusive animations, and full functionality—ready to pair with your existing `tips.json`.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SM.PREDICTIONS | VIP Lounge - Elite Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #071b2b, #010a12);
+            color: #eef5ff;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* animated gold overlay */
+        .vip-bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 70% 20%, rgba(255, 215, 0, 0.08), transparent 70%);
+            animation: slowDrift 18s infinite alternate;
+        }
+
+        @keyframes slowDrift {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.8rem 1.5rem 4rem;
+            position: relative;
+        }
+
+        /* VIP header with shine & lock */
+        .vip-hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .vip-badge-icon {
+            background: linear-gradient(145deg, #e4b363, #b47c2e);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 25px rgba(255, 200, 50, 0.6);
+            animation: floatGlow 3s infinite ease-in-out;
+        }
+
+        .vip-badge-icon i {
+            font-size: 3rem;
+            color: #1e1a0c;
+            text-shadow: 0 0 5px gold;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translateY(0px); box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);}
+            50% { transform: translateY(-8px); box-shadow: 0 0 35px rgba(255, 200, 0, 0.9);}
+            100% { transform: translateY(0px); box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);}
+        }
+
+        .vip-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF8E7, #F9D976, #E6B422);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .vip-sub {
+            font-size: 1rem;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(10px);
+            margin-top: 12px;
+            border-left: 2px solid gold;
+            border-right: 2px solid gold;
+        }
+
+        /* premium stats row */
+        .vip-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+            background: rgba(0, 15, 30, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 44px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 200, 0, 0.4);
+            box-shadow: 0 20px 30px -12px black;
+        }
+
+        .stat-card {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd966, #ffb347);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* VIP TIPS GRID - premium cards */
+        .vip-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .vip-tip-card {
+            background: rgba(10, 30, 50, 0.7);
+            backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 1.4rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 15px 25px -12px black;
+            animation: fadeInUp 0.5s ease backwards;
+        }
+
+        .vip-tip-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 200, 0, 0.85);
+            box-shadow: 0 28px 35px -14px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,200,0,0.2);
+        }
+
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #ffdd99;
+            margin-bottom: 12px;
+        }
+
+        .match-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .prediction-badge {
+            background: #2c2e3e;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 32px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 10px 0;
+            background: linear-gradient(145deg, #1e2a3a, #0f1a24);
+            border-left: 3px solid gold;
+        }
+
+        .odds {
+            font-family: monospace;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .vip-lock-badge {
+            background: rgba(0,0,0,0.6);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: gold;
+        }
+
+        .result-badge {
+            margin-top: 12px;
+            text-align: right;
+            font-weight: 800;
+        }
+
+        .won { color: #2ecc71; text-shadow: 0 0 3px #00aa55; }
+        .lost { color: #e67e22; }
+        .pending { color: #f1c40f; }
+
+        /* exclusive CTA */
+        .whatsapp-exclusive {
+            background: linear-gradient(95deg, #075e54, #128C7E);
+            border-radius: 80px;
+            text-align: center;
+            padding: 1.2rem;
+            margin-top: 2rem;
+            transition: 0.2s;
+        }
+
+        .whatsapp-exclusive a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .glow-text {
+            color: #ffd966;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 680px) {
+            .vip-hero h1 { font-size: 2rem; }
+            .vip-stats { flex-direction: column; text-align: center; gap: 1rem; }
+            .vip-tips-grid { grid-template-columns: 1fr; }
+        }
+
+        .loader {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.4rem;
+            color: #ffd966;
+        }
+    </style>
+</head>
+<body>
+<div class="vip-bg-glow"></div>
+<div class="container">
+    <!-- VIP hero section -->
+    <div class="vip-hero">
+        <div class="vip-badge-icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <h1>✧ VIP SANCTUARY ✧</h1>
+        <div class="vip-sub">
+            <i class="fas fa-gem"></i> elite predictions • early access • maximum value
+        </div>
+    </div>
+
+    <!-- statistics dynamic (win rate) -->
+    <div class="vip-stats" id="vipStats">
+        <div class="stat-card"><i class="fas fa-chart-line"></i><br><span class="stat-number" id="winRate">--</span><br>Win Rate (VIP)</div>
+        <div class="stat-card"><i class="fas fa-trophy"></i><br><span class="stat-number" id="totalTips">--</span><br>Total VIP Tips</div>
+        <div class="stat-card"><i class="fas fa-coins"></i><br><span class="stat-number" id="avgOdds">--</span><br>Avg Odds</div>
+    </div>
+
+    <!-- exclusive vip tips -->
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px;">
+        <h2 style="font-size: 1.8rem;"><i class="fas fa-lock" style="color: #F5B041;"></i> PRIVATE PICKS</h2>
+        <span style="background: #00000066; padding: 5px 15px; border-radius: 100px;"><i class="fab fa-whatsapp"></i> 24/7 support via WhatsApp</span>
+    </div>
+    <div id="vipTipsContainer" class="vip-tips-grid">
+        <div class="loader"><i class="fas fa-spinner fa-pulse"></i> Loading exclusive tips...</div>
+    </div>
+
+    <!-- vip extra booster + whatsapp -->
+    <div class="whatsapp-exclusive">
+        <a href="https://wa.me/25676722557?text=VIP%20ACCESS%20-%20I%20want%20today's%20secret%20tips%20%F0%9F%94%91" target="_blank">
+            <i class="fab fa-whatsapp"></i> 🔥 NEED EXTRA TIPS? CHAT VIP HOTLINE +25676722557 🔥
+        </a>
+        <p style="margin-top: 8px; font-size: 0.8rem;">📲 Subscription support • personal concierge • daily jackpot</p>
+    </div>
+
+    <!-- back to home button -->
+    <div style="margin-top: 2rem; text-align: center;">
+        <a href="index.html" style="color: #aac9ff; text-decoration: none; border-bottom: 1px dashed #ffcc44;">← Back to SM.PREDICTIONS lobby</a>
+    </div>
+
+    <footer>
+        <p>© SM.PREDICTIONS VIP — confidential picks. For registered members only. 18+ Gambling responsibly.</p>
+    </footer>
+</div>
+
+<script>
+    // FULL VIP LOGIC: fetch tips.json, filter vip only, compute stats, render with animation
+    async function loadVipTips() {
+        const container = document.getElementById('vipTipsContainer');
+        try {
+            const response = await fetch('tips.json?v=' + Date.now());
+            if (!response.ok) throw new Error('tips.json not found, create file with VIP tips');
+            const allTips = await response.json();
+            const vipTips = allTips.filter(tip => tip.room && tip.room.toLowerCase() === 'vip');
+            
+            if (vipTips.length === 0) {
+                container.innerHTML = `<div class="vip-tip-card" style="grid-column:1/-1; text-align:center;">
+                    <i class="fas fa-eye-slash"></i> No VIP tips yet. <br> 
+                    <strong>Add tips in tips.json with "room": "vip"</strong> — your VIP members will see exclusive content.
+                </div>`;
+                document.getElementById('winRate').innerText = '0%';
+                document.getElementById('totalTips').innerText = '0';
+                document.getElementById('avgOdds').innerText = '0.00';
+                return;
+            }
+
+            // calculate win rate for VIP
+            let wonCount = 0;
+            let totalFinished = 0;
+            let sumOdds = 0;
+            vipTips.forEach(t => {
+                if (t.result === 'won') wonCount++;
+                if (t.result === 'won' || t.result === 'lost') totalFinished++;
+                let oddsVal = parseFloat(t.odds);
+                if (!isNaN(oddsVal)) sumOdds += oddsVal;
+            });
+            const winRateVIP = totalFinished > 0 ? ((wonCount / totalFinished) * 100).toFixed(1) : '0';
+            const avgOddsVIP = (sumOdds / vipTips.length).toFixed(2);
+            document.getElementById('winRate').innerText = `${winRateVIP}%`;
+            document.getElementById('totalTips').innerText = vipTips.length;
+            document.getElementById('avgOdds').innerText = avgOddsVIP;
+
+            // render fancy VIP cards
+            container.innerHTML = '';
+            vipTips.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0)); // newest first (if date field exists)
+            vipTips.forEach((tip, idx) => {
+                const card = document.createElement('div');
+                card.className = 'vip-tip-card';
+                card.style.animationDelay = `${idx * 0.05}s`;
+                const resultClass = tip.result === 'won' ? 'won' : (tip.result === 'lost' ? 'lost' : 'pending');
+                const resultIcon = tip.result === 'won' ? '🏆' : (tip.result === 'lost' ? '❌' : '⏳');
+                card.innerHTML = `
+                    <div class="tip-header">
+                        <span><i class="fas fa-diamond"></i> VIP exclusive</span>
+                        <span class="vip-lock-badge"><i class="fas fa-lock"></i> premium zone</span>
+                    </div>
+                    <div class="match-name">⚽ ${escapeHtml(tip.match)}</div>
+                    <div class="prediction-badge"><i class="fas fa-chart-simple"></i> ${escapeHtml(tip.prediction)}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 12px;">
+                        <span class="odds"><i class="fas fa-percent"></i> ${tip.odds}</span>
+                        <span class="result-badge ${resultClass}">${resultIcon} ${tip.result ? tip.result.toUpperCase() : 'PENDING'}</span>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.75rem; border-top: 1px dashed rgba(255,215,0,0.3); padding-top: 8px;">
+                        <i class="fas fa-calendar-alt"></i> ${tip.date || 'Latest release'} &nbsp;|&nbsp; 
+                        <i class="fas fa-chart-line"></i> confidence: ${tip.confidence || 'Elite'}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // if less than 2 cards, add a beautiful note
+            if (vipTips.length < 3) {
+                const noteCard = document.createElement('div');
+                noteCard.className = 'vip-tip-card';
+                noteCard.style.background = "linear-gradient(145deg, #102334, #04121f)";
+                noteCard.innerHTML = `
+                    <div style="text-align:center; padding: 20px;">
+                        <i class="fas fa-crown" style="font-size: 2.5rem; color: gold;"></i>
+                        <h3>VIP experience</h3>
+                        <p>Get daily premium tips delivered <strong>first on WhatsApp</strong>.<br>
+                        👑 <a href="https://wa.me/25676722557" style="color: #ffcc66;">Contact +25676722557</a> for weekly subscription.</p>
+                    </div>
+                `;
+                container.appendChild(noteCard);
+            }
+
+        } catch (error) {
+            console.error(error);
+            container.innerHTML = `<div class="vip-tip-card" style="grid-column:1/-1; text-align:center; background: #220000aa;">
+                <i class="fas fa-database"></i> Warning: tips.json not found or invalid. <br>
+                Ensure you have uploaded "tips.json" with VIP entries. 
+                <pre style="background:#00000077; margin-top:12px;">Example: {"match":"Arsenal vs Chelsea","prediction":"GG","odds":"1.85","room":"vip","result":"pending"}</pre>
+                <a href="index.html" style="color:white;">← go to home & create file</a>
+            </div>`;
+            document.getElementById('winRate').innerText = '0%';
+            document.getElementById('totalTips').innerText = '0';
+            document.getElementById('avgOdds').innerText = '0.00';
+        }
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    loadVipTips();
+    // auto refresh every 5 mins (optional)
+    setInterval(loadVipTips, 300000);
+</script>
+</body>
+</html>
+```
