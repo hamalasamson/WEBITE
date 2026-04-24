@@ -1,0 +1,5 @@
+# Set your API key temporarily
+export ODDS_API_KEY="your_api_key_here"
+
+# Run the updater
+npm run update-odds
